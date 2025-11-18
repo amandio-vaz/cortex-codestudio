@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "prod": "pm2-runtime start server.js"
+    "prod": "pm2-runtime start server.js",
+    "build": "remix vite:build"
   },
   "dependencies": {
     "express": "^4.19.2",
