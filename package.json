@@ -9,6 +9,9 @@
   },
   "dependencies": {
     "express": "^4.19.2",
-    "pm2": "^5.4.1"
+    "pm2": "^6.0.13"
+  },
+  "devDependencies": {
+    "remix": "^2.17.2"
   }
 }
