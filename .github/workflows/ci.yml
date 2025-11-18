@@ -1,0 +1,76 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+      
+      # This project does not have a traditional build step (e.g., npm run build).
+      # The source files are used directly. This step serves as a placeholder.
+      - name: "Build step (Placeholder)"
+        run: |
+          echo "No build process required for this project."
+          echo "Listing files to be deployed:"
+          ls -R
+
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          
+      # This project does not have automated tests.
+      # This step is a placeholder where you would run linters or unit tests.
+      - name: "Run tests (Placeholder)"
+        run: echo "No tests configured. Skipping."
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    
+    # Grant permissions for the workflow to deploy to GitHub Pages
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    # Specify the deployment environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+        
+      # This project is a set of static files without a build process.
+      # We will upload the entire root directory as the deployment artifact.
+      # The path '.' means the root of the checked-out repository.
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

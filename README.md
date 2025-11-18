@@ -1,0 +1,3 @@
+
+      # Cortex CodeStudio
+      ... todo o conteúdo do arquivo ...

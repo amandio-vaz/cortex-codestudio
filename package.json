@@ -1,0 +1,14 @@
+{
+  "name": "cortex-codestudio-server",
+  "version": "1.2.0",
+  "description": "Static server for Cortex CodeStudio",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "prod": "pm2-runtime start server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "pm2": "^5.4.1"
+  }
+}
